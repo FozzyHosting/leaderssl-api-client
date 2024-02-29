@@ -15,7 +15,6 @@ class Clients
      *
      * @param string $login
      * @param string $password
-     * @param string $password
      * @param string $apiUrl
      * @param string $apiVersion
      * @param string $httpClient
