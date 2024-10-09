@@ -62,6 +62,6 @@ class DCV extends Entity
      */
     public function resend(int $certificateId)
     {
-        return $this->getHttpClient()->request("ssl_certificates/{$certificateId}/resend_dcv");
+        return $this->getHttpClient()->request("ssl_certificates/{$certificateId}/resend_dcv", 'POST');
     }
 }
