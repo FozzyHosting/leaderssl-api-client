@@ -104,9 +104,13 @@ class Guzzle extends HttpClient
 
         try {
             $response = $this->client->request($method, $resource, $options);
-            $contents = $response->getBody()->getContents();
+            $body = $response->getBody();
+            $contents = $body->isReadable() ? $body->getContents() : '';
         } catch (BadResponseException $e) {
-            $contents = $e->getResponse()->getBody()->getContents();
+            $response = $e->getResponse();
+            $body = $response ? $response->getBody() : null;
+
+            $contents = ($body !== null && $body->isReadable()) ? $body->getContents() : '';
         }
 
         $result = json_decode($contents, true);
